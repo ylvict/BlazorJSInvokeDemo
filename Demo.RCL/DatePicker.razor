@@ -1,0 +1,40 @@
+﻿<div @ref="PickerElement" class="my-component">
+    This Blazor component is defined in the <strong>Demo.RCL</strong> package.
+
+    <button @onclick="AddDay">Add Day</button>
+</div>
+
+@inject IJSRuntime JSRuntime
+@code {
+    ElementReference PickerElement;
+    
+    [JSInvokable]
+    public static async Task<string> OnSelect(string dateStr)
+    {
+        //TODO: [Hover]: We can do event callback actions here  
+        return await Task.FromResult(dateStr);
+    }
+
+    [Parameter]
+    public DateTime Date { get; set; }
+
+    [Parameter]
+    public string Format { get; set; } = "mm/dd/yyyy";
+
+    protected async override void OnAfterRender(bool firstRender)
+    {
+        if (!firstRender) return;
+        await JSRuntime.InvokeVoidAsync("RCL.initPicker", PickerElement, new
+        {
+            format = Format
+        });
+        await JSRuntime.InvokeVoidAsync("RCL.setDate", PickerElement, Date.ToString(this.Format));
+        await JSRuntime.InvokeVoidAsync("RCL.initOnSelectEvent", PickerElement);
+    }
+
+    public async Task AddDay()
+    {
+        Date = Date.AddDays(1);
+        await JSRuntime.InvokeVoidAsync("RCL.setDate", PickerElement, Date.ToString(this.Format));
+    }
+}
