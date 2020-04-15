@@ -6,20 +6,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="static\**" />
-    <Content Remove="static\**" />
-    <EmbeddedResource Remove="static\**" />
-    <None Remove="static\**" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="wwwroot\exampleJsInterop.js" />
-    <None Include="wwwroot\styles.css" />
-  </ItemGroup>
-
-
-  <ItemGroup>
-    <PackageReference Include="BuildBundlerMinifier" Version="3.2.447" />
     <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.0-preview.1.20124.5" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.0-preview.1.20124.5" />
   </ItemGroup>
