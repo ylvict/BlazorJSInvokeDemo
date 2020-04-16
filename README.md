@@ -15,12 +15,19 @@
   * **server** (SignalR => ws, 轮询，长轮询) 
     		DOM - Event => Server
     		Updat VDOM => VDOM => CLient (Browser) => Update DOM 
+
   * **wasm**  (WebAssembly)
+
     * HTML
+
     * CSS
+
     * JavaScript (TS, CoffeeScript, Dart->Sky->Dart-Flutter, JSCore ...)
+
       * 08~12 	Mozilla => asm.js => webassembly
+
     * WebAssembly (类似于 IL)
+
       * (Rust，C#（Blazor, Uno, OpenSilver）, Golang, C / C++)
       * => wasm
       * => JIT （V8）
@@ -50,21 +57,40 @@
         * community （lib, pulgin, framework, community）
           * js: jquery, mvvm pulugin,
         * （freedom）sytax
-    * wasm ❤ js
-      * Blazor ❤ js
-      * 互操作
-      * https://docs.microsoft.com/en-us/aspnet/core/blazor/integrate-components?view=aspnetcore-3.1
-      * 
 
-  
+    * wasm ❤ js
+
+      * Blazor ❤ js
+
+      * 互操作
+
+      * https://docs.microsoft.com/en-us/aspnet/core/blazor/integrate-components?view=aspnetcore-3.1
+
+      * From C# to JS
+
+        `await JSRuntime.InvokeVoidAsync("RCL.setDate", PickerElement, Date.ToString(this.Format));`
+
+      * From JS to C#
+
+        `DotNet.invokeMethodAsync("Demo.RCL", "OnSelect", `
+
+        ​	`$(e.target)`
+
+        ​	`.datepicker("getDate"))`
+
+        ​	`.then(x => {`
+
+        ​		`console.log();`
+
+        ​	`});`
+
+        * In C# source file we need add ``` [JSInvokable]``` attribute to a static method ```OnSelect``` to get the call from JavaScript.
 
   * MonoWasm
+
     * Steve Sanderson: 1st Engineer of Blazor
       * https://github.com/SteveSandersonMS
     * mono.wasm
       * dotnet *.dll
       * dotnet-runtime.js
 
-
-​		
-​			
